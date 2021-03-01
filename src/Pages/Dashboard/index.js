@@ -1,26 +1,31 @@
-import React from 'react';
-import { useAuthDispatch, logout, useAuthState } from '../../Context';
-import styles from './dashboard.module.css';
+import { Button, makeStyles } from "@material-ui/core";
+import React from "react";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flex: 1,
+  },
+  button: {
+    margin: theme.spacing(2),
+  },
+}));
 
 function Dashboard(props) {
-	const dispatch = useAuthDispatch();
-	const userDetails = useAuthState();
+  const classes = useStyles();
 
-	const handleLogout = () => {
-		logout(dispatch);
-		props.history.push('/login');
-	};
-	return (
-		<div style={{ padding: 10 }}>
-			<div className={styles.dashboardPage}>
-				<h1>Dashboard</h1>
-				<button className={styles.logoutBtn} onClick={handleLogout}>
-					Logout
-				</button>
-			</div>
-			<p>Welcome {userDetails.user.email}</p>
-		</div>
-	);
+  const handleEnterRoom = () => {};
+  return (
+    <div className={classes.root}>
+      <Button
+        color="primary"
+        variant="outlined"
+        onClick={handleEnterRoom}
+        className={classes.button}
+      >
+        Enter Game
+      </Button>
+    </div>
+  );
 }
 
 export default Dashboard;
